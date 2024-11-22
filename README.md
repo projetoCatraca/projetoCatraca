@@ -6,28 +6,28 @@ Este repositório contém o desenvolvimento de um sistema de controle de acesso 
 
 👤 **André Gondek**
 
-- LinkedIn: [ @user ](link do perfil)
-- Github: [ @user ](link do perfil)
+<!-- - LinkedIn: [ @user ](link do perfil)
+- Github: [ @user ](link do perfil) -->
 
 👤 **Bianca Silva**
 
-- LinkedIn: [ @user ](link do perfil)
-- Github: [ @user ](link do perfil)
+<!-- - LinkedIn: [ @user ](link do perfil)
+- Github: [ @user ](link do perfil) -->
 
 👤 **Julia Cordeiro**
 
-- LinkedIn: [ @user ](link do perfil)
-- Github: [ @user ](link do perfil)
+<!-- - LinkedIn: [ @user ](link do perfil)
+- Github: [ @user ](link do perfil) -->
   
-  👤 **Juliana Olegario**
+👤 **Juliana Olegario**
 
-- LinkedIn: [ @user ](link do perfil)
-- Github: [ @user ](link do perfil)
+<!-- - LinkedIn: [ @user ](link do perfil)
+- Github: [ @user ](link do perfil) --> 
  
-  👤 **Kaique Moreno**
+👤 **Kaique Moreno**
 
-- LinkedIn: [ @user ](link do perfil)
-- Github: [ @user ](link do perfil)
+<!-- - LinkedIn: [ @user ](link do perfil)
+- Github: [ @user ](link do perfil) -->
  
 👤 **Kauanne Oliveira**
 

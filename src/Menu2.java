@@ -3,10 +3,11 @@ import java.util.Scanner;
 public class Menu2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int menu;
-        String[] alunos = new String[2];
+        int menu, i = 0, j = 0;
+        String AQV = "", aviso = "Não há espaço para cadastrar um novo usuário!";
+        String[] alunos = new String[10];
         String[] coordenadores = new String[2];
-        long[] matriculaAlunos = new long[2];
+        long[] matriculaAlunos = new long[10];
         long[] matriculaFuncionarios = new long[3];
 
         do {
@@ -28,36 +29,50 @@ public class Menu2 {
 
                     if (escolha == 1) {
                         // Alunos
-                        for (int i = 0; i < alunos.length; i++) {
+                        if (i < 10) {
                             System.out.println("Nome do Aluno");
                             alunos[i] = scanner.nextLine();
 
                             System.out.println("Matricula");
                             matriculaAlunos[i] = scanner.nextLong();
+
+                            i++;
                             scanner.nextLine();
+                            System.out.println();
+                        } else {
+                            System.out.println(aviso);
+                            System.out.println();
                         }
-                        System.out.println();
                     } else if (escolha == 2) {
                         // AQV
-                        System.out.println("Nome da(o) Analista de Qualidade de Vida (AQV)");
-                        String AQV = scanner.nextLine();
-
-                        System.out.println("Matricula");
-                        matriculaFuncionarios[0] = scanner.nextLong();
-                        scanner.nextLine();
-                        System.out.println();
-
-                    } else if (escolha == 3) {
-                        // Coordenadores
-                        for (int i = 0; i < coordenadores.length; i++) {
-                            System.out.println("Nome");
-                            coordenadores[i] = scanner.nextLine();
+                        if (AQV == "") {
+                            System.out.println("Nome da(o) Analista de Qualidade de Vida (AQV)");
+                            AQV = scanner.nextLine();
 
                             System.out.println("Matricula");
-                            matriculaFuncionarios[i + 1] = scanner.nextLong();
+                            matriculaFuncionarios[0] = scanner.nextLong();
                             scanner.nextLine();
+                            System.out.println();
+                        } else {
+                            System.out.println(aviso);
+                            System.out.println();
                         }
-                        System.out.println();
+                    } else if (escolha == 3) {
+                        // Coordenadores
+                        if (j < 2) {
+                            System.out.println("Nome");
+                            coordenadores[j] = scanner.nextLine();
+
+                            System.out.println("Matricula");
+                            matriculaFuncionarios[j + 1] = scanner.nextLong();
+
+                            j++;
+                            scanner.nextLine();
+                            System.out.println();
+                        } else {
+                            System.out.println(aviso);
+                            System.out.println();
+                        }
                     }
                     else {
                         System.out.println("Opção Inválida! Informa uma opção existente.");
@@ -67,9 +82,12 @@ public class Menu2 {
 
                 case 2:
                     System.out.println("\tAlunos Cadastrados");
-                    for (int i = 0; i < alunos.length; i++) {
-                        System.out.println("Nome: " + alunos[i]);
-                        System.out.println("Matrícula: " + matriculaAlunos[i]);
+                    for (int x = 0; x < 10; x++) {
+                        if (alunos[x] == null) {
+                            break;
+                        }
+                        System.out.println("Nome: " + alunos[x]);
+                        System.out.println("Matrícula: " + matriculaAlunos[x]);
                         System.out.println();
                     }
                     break;

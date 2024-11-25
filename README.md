@@ -27,7 +27,7 @@ Este repositório contém o desenvolvimento de um sistema de controle de acesso 
 👤 **Kaique Moreno**
 
 <!-- - LinkedIn: [ @user ](link do perfil)
-- Github: [ @user ](link do perfil) -->
+- Github: [ @user ](link do perfil)-->
  
 👤 **Kauanne Oliveira**
 

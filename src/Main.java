@@ -8,10 +8,11 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int menu, escolha, i = 0, j = 0;
         String AQV = "", aviso = "Não há espaço para cadastrar um novo usuário!";
-        String[] alunos = new String[10];
+        String[][] alunos = new String[10][5];
         String[] coordenadores = new String[2];
         long[] matriculaAlunos = new long[10];
         long[] matriculaFuncionarios = new long[3];
+        boolean teste = false;
 
         do {
             // Menu Principal
@@ -34,10 +35,30 @@ public class Main {
                         // Alunos
                         if (i < 10) {
                             System.out.println("Nome do Aluno");
-                            alunos[i] = scanner.nextLine();
+                            alunos[i][0] = scanner.nextLine();
+
+                            System.out.println("Idade do Aluno");
+                            alunos[i][1] = scanner.nextLine();
+
+                            System.out.println("Sexo do Aluno");
+                            alunos[i][2] = scanner.nextLine();
+
+                            System.out.println("Curso do Aluno");
+                            alunos[i][3] = scanner.nextLine();
 
                             System.out.println("Matricula");
                             matriculaAlunos[i] = scanner.nextLong();
+
+                            alunos[i][4] = (matriculaAlunos[i]*3 + (Integer.parseInt(alunos[i][1]))*2 + matriculaAlunos[i]*2 + "");
+                            for (int x = 0; x < 10; x++) {
+                                if (x != i) {
+                                    if (alunos[i][4] == alunos[x][4]) {
+                                        alunos[i][4] = (Integer.parseInt(alunos[i][4]) + 1) + "";
+                                        x = 0;
+                                    }
+                                }
+                            }
+                            System.out.println("Código do usuário: " + alunos[i][4]);
 
                             i++;
                             scanner.nextLine();
@@ -86,10 +107,10 @@ public class Main {
                 case 2:
                     System.out.println("\tAlunos Cadastrados");
                     for (int x = 0; x < 10; x++) {
-                        if (alunos[x] == null) {
+                        if (alunos[x][0] == null) {
                             break;
                         }
-                        System.out.println("Nome: " + alunos[x]);
+                        System.out.println("Nome: " + alunos[x][0]);
                         System.out.println("Matrícula: " + matriculaAlunos[x]);
                         System.out.println();
                     }
@@ -110,10 +131,14 @@ public class Main {
                         boolean encontrado = false;
 
                         for (int x = 0; x < 10; x++) {
-                            if (nomebusca.equals(alunos[x])) {
+                            if (nomebusca.equals(alunos[x][0])) {
                                 System.out.println("Aluno encontrado!");
-                                System.out.println("Nome: " + alunos[x]);
+                                System.out.println("Nome: " + alunos[x][0]);
+                                System.out.println("Idade: " + alunos[x][1]);
+                                System.out.println("Sexo: " + alunos[x][2]);
+                                System.out.println("Curso: " + alunos[x][3]);
                                 System.out.println("Matrícula: " + matriculaAlunos[x]);
+                                System.out.println("Código do usuário: " + alunos[x][4]);
                                 System.out.println();
                                 encontrado = true;
                                 break;
@@ -133,8 +158,12 @@ public class Main {
                         for (int x = 0; x < 10; x++) {
                             if (matriculaBusca == matriculaAlunos[x]) {
                                 System.out.println("Aluno encontrado!");
-                                System.out.println("Nome: " + alunos[x]);
+                                System.out.println("Nome: " + alunos[x][0]);
+                                System.out.println("Idade: " + alunos[x][1]);
+                                System.out.println("Sexo: " + alunos[x][2]);
+                                System.out.println("Curso: " + alunos[x][3]);
                                 System.out.println("Matrícula: " + matriculaAlunos[x]);
+                                System.out.println("Código do usuário: " + alunos[x][4]);
                                 System.out.println();
                                 encontrado = true;
                                 break;

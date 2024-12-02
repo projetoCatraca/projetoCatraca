@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Random;
 
 // Adicionar a busca - por nome ou matricula
 // id de cada usuário
@@ -6,13 +7,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int menu, escolha, i = 0, j = 0;
-        String AQV = "", aviso = "Não há espaço para cadastrar um novo usuário!";
+        int menu, escolha, i = 0, j = 1;
+        String aviso = "Não há espaço para cadastrar um novo usuário!";
         String[][] alunos = new String[10][5];
-        String[] coordenadores = new String[2];
+        String[][] funcionarios = new String[3][4];
         long[] matriculaAlunos = new long[10];
         long[] matriculaFuncionarios = new long[3];
-        boolean teste = false;
 
         do {
             // Menu Principal
@@ -49,7 +49,7 @@ public class Main {
                             System.out.println("Matricula");
                             matriculaAlunos[i] = scanner.nextLong();
 
-                            alunos[i][4] = (matriculaAlunos[i]*3 + (Integer.parseInt(alunos[i][1]))*2 + matriculaAlunos[i]*2 + "");
+                            alunos[i][4] = gerador(100, 100000) + "";
                             for (int x = 0; x < 10; x++) {
                                 if (x != i) {
                                     if (alunos[i][4] == alunos[x][4]) {
@@ -69,13 +69,31 @@ public class Main {
                         }
                     } else if (escolha == 2) {
                         // AQV
-                        if (AQV == "") {
+                        if (funcionarios[0][0] == null) {
                             System.out.println("Nome da(o) Analista de Qualidade de Vida (AQV)");
-                            AQV = scanner.nextLine();
+                            funcionarios[0][0] = scanner.nextLine();
+
+                            System.out.println("Idade");
+                            funcionarios[0][1] = scanner.nextLine();
+
+                            System.out.println("Sexo");
+                            funcionarios[0][2] = scanner.nextLine();
 
                             System.out.println("Matricula");
                             matriculaFuncionarios[0] = scanner.nextLong();
                             scanner.nextLine();
+
+                            funcionarios[0][3] = gerador(100, 100000) + "";
+                            for (int x = 0; x < 3; x++) {
+                                if (x != 0) {
+                                    if (funcionarios[x][3] == funcionarios[0][3]) {
+                                        funcionarios[0][3] = (Integer.parseInt(funcionarios[0][3]) + 1) + "";
+                                        x = 0;
+                                    }
+                                }
+                            }
+                            System.out.println("Código do usuário: " + funcionarios[i][3]);
+
                             System.out.println();
                         } else {
                             System.out.println(aviso);
@@ -83,15 +101,32 @@ public class Main {
                         }
                     } else if (escolha == 3) {
                         // Coordenadores
-                        if (j < 2) {
+                        if (j < 3) {
                             System.out.println("Nome");
-                            coordenadores[j] = scanner.nextLine();
+                            funcionarios[j][0] = scanner.nextLine();
+
+                            System.out.println("Idade");
+                            funcionarios[j][1] = scanner.nextLine();
+
+                            System.out.println("Sexo");
+                            funcionarios[j][2] = scanner.nextLine();
 
                             System.out.println("Matricula");
-                            matriculaFuncionarios[j + 1] = scanner.nextLong();
+                            matriculaFuncionarios[j] = scanner.nextLong();
+                            scanner.nextLine();
+
+                            funcionarios[i][3] = gerador(100, 100000) + "";
+                            for (int x = 0; x < 3; x++) {
+                                if (x != i) {
+                                    if (funcionarios[i][3] == funcionarios[x][3]) {
+                                        funcionarios[i][3] = (Integer.parseInt(funcionarios[i][3]) + 1) + "";
+                                        x = 0;
+                                    }
+                                }
+                            }
+                            System.out.println("Código do usuário: " + funcionarios[i][4]);
 
                             j++;
-                            scanner.nextLine();
                             System.out.println();
                         } else {
                             System.out.println(aviso);
@@ -111,7 +146,11 @@ public class Main {
                             break;
                         }
                         System.out.println("Nome: " + alunos[x][0]);
+                        System.out.println("Idade: " + alunos[x][1]);
+                        System.out.println("Sexo: " + alunos[x][2]);
+                        System.out.println("Curso: " + alunos[x][3]);
                         System.out.println("Matrícula: " + matriculaAlunos[x]);
+                        System.out.println("Código de usuário: " + alunos[x][4]);
                         System.out.println();
                     }
                     break;
@@ -192,5 +231,10 @@ public class Main {
         } while (menu != 4);
 
         scanner.close();
+    }
+
+    public static int gerador(int min, int max) {
+        Random random = new Random();
+        return random.nextInt((max - min) + 1) + min;
     }
 }

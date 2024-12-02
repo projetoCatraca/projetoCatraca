@@ -1,9 +1,6 @@
 import java.util.Scanner;
 import java.util.Random;
 
-// Adicionar a busca - por nome ou matricula
-// id de cada usuário
-
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -229,7 +226,7 @@ public class Main {
                     System.out.println();
             }
         } while (menu != 4);
-
+        
         scanner.close();
     }
 

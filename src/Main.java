@@ -115,16 +115,16 @@ public class Main {
                             matriculaFuncionarios[j] = scanner.nextLong();
                             scanner.nextLine();
 
-                            funcionarios[i][3] = gerador(100, 100000) + "";
+                            funcionarios[j][3] = gerador(100, 100000) + "";
                             for (int x = 0; x < 3; x++) {
-                                if (x != i) {
-                                    if (funcionarios[i][3] == funcionarios[x][3]) {
-                                        funcionarios[i][3] = (Integer.parseInt(funcionarios[i][3]) + 1) + "";
+                                if (x != j) {
+                                    if (funcionarios[j][3] == funcionarios[x][3]) {
+                                        funcionarios[j][3] = (Integer.parseInt(funcionarios[j][3]) + 1) + "";
                                         x = 0;
                                     }
                                 }
                             }
-                            System.out.println("Código do usuário: " + funcionarios[i][4]);
+                            System.out.println("Código do usuário: " + funcionarios[j][3]);
 
                             j++;
                             System.out.println();

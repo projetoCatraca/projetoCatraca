@@ -237,10 +237,9 @@ public class Main {
     }
 
     public static void exibirDados(int linha) {
-        System.out.println("Nome: " + alunos[linha][0]);
-        System.out.println("Idade: " + alunos[linha][1]);
-        System.out.println("Sexo: " + alunos[linha][2]);
-        System.out.println("Curso: " + alunos[linha][3]);
+        for (int x = 0; x < 4; x++) {
+            System.out.println(tiposDeDados[x] + ": " + alunos[linha][x]);
+        }
         System.out.println("Matrícula: " + matriculaAlunos[linha]);
         System.out.println("Código do usuário: " + codigosDeUsuario[linha] + "\n");
     }

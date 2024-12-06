@@ -16,7 +16,7 @@ public class Main {
             System.out.println("""
                             -- Menu Principal --
                             ____________________
-                            |Você é:           |
+                            |                  |
                             |1- Cadastro       |
                             |2- Consulta       |
                             |3- Busca          |

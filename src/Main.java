@@ -53,7 +53,7 @@ public class Main {
                     System.out.println("Opção Inválida! Informe uma opção existente." + "\n");
             }
         } while (menu != 4);
-        
+
         scanner.close();
     }
 
@@ -107,7 +107,7 @@ public class Main {
                     System.out.print("Matrícula da AQV: ");
                     matriculaFuncionarios[0] = scanner.nextLong();
                     scanner.nextLine();
-                    gerarCodigo(0);
+                    gerarCodigo(10);
                 } else {
                     System.out.println(avisoEspaco + "\n");
                 }
@@ -124,7 +124,7 @@ public class Main {
                     System.out.print("Matrícula do Coordenador: ");
                     matriculaFuncionarios[j] = scanner.nextLong();
                     scanner.nextLine();
-                    gerarCodigo(j);
+                    gerarCodigo(j+10);
 
                     j++;
 
@@ -185,7 +185,7 @@ public class Main {
                     System.out.println("Aluno não encontrado!");
                 }
 
-            // Busca pela Matrícula
+                // Busca pela Matrícula
             } else if (escolha == 2) {
                 System.out.print("Digite a matrícula do aluno: ");
                 long matriculaBusca = scanner.nextLong();
@@ -218,7 +218,7 @@ public class Main {
         Random random = new Random();
         codigosDeUsuario[contador] = random.nextInt((999999 - 100000) + 1) + 100000;
 
-        for (int x = 0; x < 10; x++) {
+        for (int x = 0; x < 13; x++) {
             if (x != contador) {
                 while (codigosDeUsuario[contador] == codigosDeUsuario[x]) {
                     codigosDeUsuario[contador] = random.nextInt((999999 - 100000) + 1) + 100000;

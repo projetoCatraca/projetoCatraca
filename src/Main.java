@@ -13,7 +13,16 @@ public class Main {
 
         do {
             // Menu Principal
-            System.out.println("Menu Principal \n\t1- Cadastro \n\t2- Consulta \n\t3- Busca \n\t4- Sair");
+            System.out.println("""
+                            -- Menu Principal --
+                            ____________________
+                            |Você é:           |
+                            |1- Cadastro       |
+                            |2- Consulta       |
+                            |3- Busca          |
+                            |4- Sair           | 
+                            |__________________|
+                            """);
             System.out.print("Escolha uma opção: ");
             menu = scanner.nextInt();
             scanner.nextLine();   // Limpar o buffer
@@ -22,7 +31,14 @@ public class Main {
             switch (menu) {
                 case 1:
                     // Menu Cadastro
-                    System.out.println("Você é: \n\t1- Aluno \n\t2- AQV \n\t3- Coordenador");
+                    System.out.println("""
+                                - Você é: -
+                            ____________________
+                            |1- Aluno          |
+                            |2- AQV            |
+                            |3- Coordenador    |
+                            |__________________|
+                            """);
                     System.out.print("Escolha uma opção: ");
                     escolha = scanner.nextInt();
                     scanner.nextLine();
@@ -31,19 +47,20 @@ public class Main {
                     if (escolha == 1) {
                         // Alunos
                         if (i < 10) {
-                            System.out.println("Nome do Aluno");
+                            System.out.println("-- Cadastro do Aluno --");
+                            System.out.print("Nome do Aluno: ");
                             alunos[i][0] = scanner.nextLine();
 
-                            System.out.println("Idade do Aluno");
+                            System.out.print("Idade do Aluno: ");
                             alunos[i][1] = scanner.nextLine();
 
-                            System.out.println("Sexo do Aluno");
+                            System.out.print("Sexo do Aluno: ");
                             alunos[i][2] = scanner.nextLine();
 
-                            System.out.println("Curso do Aluno");
+                            System.out.print("Curso do Aluno: ");
                             alunos[i][3] = scanner.nextLine();
 
-                            System.out.println("Matricula");
+                            System.out.print("Matricula: ");
                             matriculaAlunos[i] = scanner.nextLong();
 
                             alunos[i][4] = gerador(100, 100000) + "";
@@ -67,16 +84,17 @@ public class Main {
                     } else if (escolha == 2) {
                         // AQV
                         if (funcionarios[0][0] == null) {
-                            System.out.println("Nome da(o) Analista de Qualidade de Vida (AQV)");
+                            System.out.println("-- Cadastro do AQV --");
+                            System.out.print("Nome da(o) Analista de Qualidade de Vida (AQV): ");
                             funcionarios[0][0] = scanner.nextLine();
 
-                            System.out.println("Idade");
+                            System.out.print("Idade: ");
                             funcionarios[0][1] = scanner.nextLine();
 
-                            System.out.println("Sexo");
+                            System.out.print("Sexo: ");
                             funcionarios[0][2] = scanner.nextLine();
 
-                            System.out.println("Matricula");
+                            System.out.print("Matricula: ");
                             matriculaFuncionarios[0] = scanner.nextLong();
                             scanner.nextLine();
 
@@ -99,16 +117,17 @@ public class Main {
                     } else if (escolha == 3) {
                         // Coordenadores
                         if (j < 3) {
-                            System.out.println("Nome");
+                            System.out.println("-- Cadastro de Coordenador --");
+                            System.out.print("Nome: ");
                             funcionarios[j][0] = scanner.nextLine();
 
-                            System.out.println("Idade");
+                            System.out.print("Idade: ");
                             funcionarios[j][1] = scanner.nextLine();
 
-                            System.out.println("Sexo");
+                            System.out.print("Sexo: ");
                             funcionarios[j][2] = scanner.nextLine();
 
-                            System.out.println("Matricula");
+                            System.out.print("Matricula: ");
                             matriculaFuncionarios[j] = scanner.nextLong();
                             scanner.nextLine();
 
@@ -137,7 +156,7 @@ public class Main {
 
                 // Consulta
                 case 2:
-                    System.out.println("\tAlunos Cadastrados");
+                    System.out.println("-- Consulta de alunos cadastrados --");
                     for (int x = 0; x < 10; x++) {
                         if (alunos[x][0] == null) {
                             break;
@@ -154,7 +173,14 @@ public class Main {
 
                 // Busca
                 case 3:
-                    System.out.println("\t1- Nome \n\t2- Matrícula\n");
+                    System.out.println("""
+                            ____________________
+                            |Busca por:        |
+                            |1- Nome           |
+                            |2- Matrícula      |
+                            |__________________|
+                            
+                            """);
                     System.out.print("Escolha a opção que deseja fazer a busca: ");
                     escolha = scanner.nextInt();
                     scanner.nextLine();
@@ -185,7 +211,7 @@ public class Main {
                             System.out.println("Aluno não encontrado!");
                         }
 
-                    // Busca pela matrícula
+                        // Busca pela matrícula
                     } else if (escolha == 2) {
                         System.out.print("Digite a matrícula do aluno: ");
                         long matriculaBusca = scanner.nextLong();
@@ -216,7 +242,7 @@ public class Main {
                     }
                     break;
 
-                    // Encerramento do Programa
+                // Encerramento do Programa
                 case 4:
                     System.out.println("Encerrando o programa...");
                     break;
@@ -226,7 +252,7 @@ public class Main {
                     System.out.println();
             }
         } while (menu != 4);
-        
+
         scanner.close();
     }
 

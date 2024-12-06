@@ -3,14 +3,15 @@ import java.util.Random;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
-    public static void main(String[] args) {
-        int menu, escolha, i = 0, j = 1;
-        String aviso = "Não há espaço para cadastrar um novo usuário!";
-        String[][] alunos = new String[10][5];
-        String[][] funcionarios = new String[3][4];
-        long[] matriculaAlunos = new long[10];
-        long[] matriculaFuncionarios = new long[3];
+    static int menu, escolha, i = 0, j = 1;
+    static String avisoEspaco = "Não há espaço para cadastrar um novo usuário!";
+    static String[] tiposDeDados = {"Nome", "Idade", "Sexo", "Curso"};
+    static String[][] alunos = new String[10][4], funcionarios = new String[3][3];
+    static long[] matriculaAlunos = new long[10];
+    static long[] matriculaFuncionarios = new long[3];
+    static long[] codigosDeUsuario = new long[13];
 
+    public static void main(String[] args) {
         do {
             // Menu Principal
             System.out.println("Menu Principal \n\t1- Cadastro \n\t2- Consulta \n\t3- Busca \n\t4- Sair");
@@ -21,122 +22,7 @@ public class Main {
 
             switch (menu) {
                 case 1:
-                    // Menu Cadastro
-                    System.out.println("Você é: \n\t1- Aluno \n\t2- AQV \n\t3- Coordenador");
-                    System.out.print("Escolha uma opção: ");
-                    escolha = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println();
-
-                    if (escolha == 1) {
-                        // Alunos
-                        if (i < 10) {
-                            System.out.println("Nome do Aluno");
-                            alunos[i][0] = scanner.nextLine();
-                            ImpedirRegistroVazio(alunos, "Nome do aluno: ", i, 0);
-
-                            System.out.println("Idade do Aluno");
-                            alunos[i][1] = scanner.nextLine();
-                            ImpedirRegistroVazio(alunos, "Idade do aluno: ", i, 1);
-
-                            System.out.println("Sexo do Aluno");
-                            alunos[i][2] = scanner.nextLine();
-                            ImpedirRegistroVazio(alunos, "Sexo do aluno: ", i, 2);
-
-                            System.out.println("Curso do Aluno");
-                            alunos[i][3] = scanner.nextLine();
-                            ImpedirRegistroVazio(alunos, "Curso do aluno: ", i, 3);
-
-                            System.out.println("Matricula do Aluno");
-                            matriculaAlunos[i] = scanner.nextLong();
-                            scanner.nextLine();
-
-                            alunos[i][4] = GeradorDeCodigo(100, 100000) + "";
-                            for (int x = 0; x < 10; x++) {
-                                if (x != i) {
-                                    if (alunos[i][4] == alunos[x][4]) {
-                                        alunos[i][4] = (Integer.parseInt(alunos[i][4]) + 1) + "";
-                                        x = 0;
-                                    }
-                                }
-                            }
-                            System.out.println("Código do usuário: " + alunos[i][4] + "\n");
-
-                            i++;
-
-                        } else {
-                            System.out.println(aviso + "\n");
-                        }
-                    } else if (escolha == 2) {
-                        // AQV
-                        if (funcionarios[0][0] == null) {
-                            System.out.println("Nome da(o) Analista de Qualidade de Vida (AQV)");
-                            funcionarios[0][0] = scanner.nextLine();
-                            ImpedirRegistroVazio(funcionarios, "Nome da(o) Analista de Qualidade de Vida (AQV): ", 0, 0);
-
-                            System.out.println("Idade da(o) Analista de Qualidade de Vida (AQV)");
-                            funcionarios[0][1] = scanner.nextLine();
-                            ImpedirRegistroVazio(funcionarios, "Idade da(o) Analista de Qualidade de Vida (AQV): ", 0, 1);
-
-                            System.out.println("Sexo da(o) Analista de Qualidade de Vida (AQV)");
-                            funcionarios[0][2] = scanner.nextLine();
-                            ImpedirRegistroVazio(funcionarios, "Sexo da(o) Analista de Qualidade de Vida (AQV): ", 0, 2);
-
-                            System.out.println("Matricula da(o) Analista de Qualidade de Vida (AQV)");
-                            matriculaFuncionarios[0] = scanner.nextLong();
-                            scanner.nextLine();
-
-                            funcionarios[0][3] = GeradorDeCodigo(100, 100000) + "";
-                            for (int x = 0; x < 3; x++) {
-                                if (x != 0) {
-                                    if (funcionarios[x][3] == funcionarios[0][3]) {
-                                        funcionarios[0][3] = (Integer.parseInt(funcionarios[0][3]) + 1) + "";
-                                        x = 0;
-                                    }
-                                }
-                            }
-                            System.out.println("Código do usuário: " + funcionarios[i][3] + "\n");
-
-                        } else {
-                            System.out.println(aviso + "\n");
-                        }
-                    } else if (escolha == 3) {
-                        // Coordenadores
-                        if (j < 3) {
-                            System.out.println("Nome do Coordenador");
-                            funcionarios[j][0] = scanner.nextLine();
-                            ImpedirRegistroVazio(funcionarios, "Nome do Coordenador: ", j, 0);
-
-                            System.out.println("Idade do Coordenador");
-                            funcionarios[j][1] = scanner.nextLine();
-                            ImpedirRegistroVazio(funcionarios, "Idade do Coordenador: ", j, 1);
-
-                            System.out.println("Sexo do Coordenador");
-                            funcionarios[j][2] = scanner.nextLine();
-                            ImpedirRegistroVazio(funcionarios, "Sexo do Coordenador: ", j, 2);
-
-                            System.out.println("Matricula do Coordenador");
-                            matriculaFuncionarios[j] = scanner.nextLong();
-                            scanner.nextLine();
-
-                            funcionarios[j][3] = GeradorDeCodigo(100, 100000) + "";
-                            for (int x = 0; x < 3; x++) {
-                                if (x != j) {
-                                    if (funcionarios[j][3] == funcionarios[x][3]) {
-                                        funcionarios[j][3] = (Integer.parseInt(funcionarios[j][3]) + 1) + "";
-                                        x = 0;
-                                    }
-                                }
-                            }
-                            System.out.println("Código do usuário: " + funcionarios[j][3] + "\n");
-
-                            j++;
-                        } else {
-                            System.out.println(aviso + "\n");
-                        }
-                    } else {
-                        System.out.println("Opção Inválida! Informa uma opção existente.\n");
-                    }
+                    cadastrarUsuarios();
                     break;
 
                 // Consulta
@@ -147,7 +33,7 @@ public class Main {
                             if (alunos[x][0] == null) {
                                 break;
                             }
-                            ExibirDados(alunos, matriculaAlunos, x);
+                            exibirDados(alunos, matriculaAlunos, codigosDeUsuario, x);
                         }
                     } else {
                         System.out.println("Ainda não há alunos cadastrados!\n");
@@ -172,7 +58,7 @@ public class Main {
                             for (int x = 0; x < 10; x++) {
                                 if (nomebusca.equals(alunos[x][0])) {
                                     System.out.println("Aluno encontrado!");
-                                    ExibirDados(alunos, matriculaAlunos, x);
+                                    exibirDados(alunos, matriculaAlunos, codigosDeUsuario, x);
                                     encontrado = true;
                                     break;
                                 }
@@ -191,7 +77,7 @@ public class Main {
                             for (int x = 0; x < 10; x++) {
                                 if (matriculaBusca == matriculaAlunos[x]) {
                                     System.out.println("Aluno encontrado!");
-                                    ExibirDados(alunos, matriculaAlunos, x);
+                                    exibirDados(alunos, matriculaAlunos, codigosDeUsuario, x);
                                     encontrado = true;
                                     break;
                                 }
@@ -222,25 +108,110 @@ public class Main {
         scanner.close();
     }
 
-    public static int GeradorDeCodigo(int min, int max) {
+    public static void gerarCodigo(int min, int max, long[] vetor, int contador) {
         Random random = new Random();
-        return random.nextInt((max - min) + 1) + min;
+        vetor[contador] = random.nextInt((max - min) + 1) + min;
+
+        for (int x = 0; x < 10; x++) {
+            if (x != contador) {
+                while (vetor[contador] == vetor[x]) {
+                    vetor[contador] = random.nextInt((max - min) + 1) + min;
+                }
+            }
+        }
+        System.out.println("Código do usuário: " + vetor[contador] + "\n");
     }
 
-    public static void ImpedirRegistroVazio(String[][] matriz, String texto, int linha, int coluna) {
+    public static void impedirRegistroVazio(String[][] matriz, int linha, int coluna, String texto) {
         while (matriz[linha][coluna] == "") {
-            System.out.print("Este campo é obrigatório!\n" + texto);
+            System.out.print("Este campo é obrigatório!\n" + texto + ": ");
             matriz[linha][coluna] = scanner.nextLine();
         }
         System.out.println();
     }
 
-    public static void ExibirDados(String[][] matriz, long[] vetor, int linha) {
+    public static void exibirDados(String[][] matriz, long[] vetor, long[] codigo, int linha) {
         System.out.println("Nome: " + matriz[linha][0]);
         System.out.println("Idade: " + matriz[linha][1]);
         System.out.println("Sexo: " + matriz[linha][2]);
         System.out.println("Curso: " + matriz[linha][3]);
         System.out.println("Matrícula: " + vetor[linha]);
-        System.out.println("Código do usuário: " + matriz[linha][4] + "\n");
+        System.out.println("Código do usuário: " + codigo[linha] + "\n");
+    }
+
+    public static void cadastrarUsuarios() {
+        // Menu Cadastro
+        System.out.println("Você é: \n\t1- Aluno \n\t2- AQV \n\t3- Coordenador");
+        System.out.print("Escolha uma opção: ");
+        escolha = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println();
+
+        switch (escolha) {
+            // Alunos
+            case 1:
+                if (i < 10) {
+                    for (int x = 0; x < 4; x++) {
+                        System.out.println(tiposDeDados[x] + " do Aluno");
+                        alunos[i][x] = scanner.nextLine();
+                        impedirRegistroVazio(alunos, i, x, tiposDeDados[x] + " do Aluno");
+                    }
+                    System.out.println("Matrícula do Aluno");
+                    matriculaAlunos[i] = scanner.nextLong();
+                    scanner.nextLine();
+                    gerarCodigo(100000, 999999, codigosDeUsuario, i);
+
+                    i++;
+
+                } else {
+                    System.out.println(avisoEspaco + "\n");
+                }
+                break;
+            // AQV
+            case 2:
+                if (funcionarios[0][0] == null) {
+                    for (int x = 0; x < 3; x++) {
+                        System.out.println(tiposDeDados[x] + " da AQV");
+                        funcionarios[0][x] = scanner.nextLine();
+                        impedirRegistroVazio(funcionarios, 0, x, tiposDeDados[x] + " da AQV");
+                    }
+                    System.out.println("Matrícula da AQV");
+                    matriculaFuncionarios[0] = scanner.nextLong();
+                    scanner.nextLine();
+                    gerarCodigo(100000, 999999, codigosDeUsuario, 0);
+                } else {
+                    System.out.println(avisoEspaco + "\n");
+                }
+                break;
+            // Coordenadores
+            case 3:
+                if (j < 3) {
+                    for (int x = 0; x < 3; x++) {
+                        System.out.println(tiposDeDados[x] + " do Coordenador");
+                        funcionarios[j][x] = scanner.nextLine();
+                        impedirRegistroVazio(funcionarios, j, x, tiposDeDados[x] + " do Coordenador");
+                    }
+                    System.out.println("Matrícula do Coordenador");
+                    matriculaFuncionarios[j] = scanner.nextLong();
+                    scanner.nextLine();
+                    gerarCodigo(100000, 999999, codigosDeUsuario, j);
+
+                    j++;
+
+                } else {
+                    System.out.println(avisoEspaco + "\n");
+                }
+                break;
+            default:
+                System.out.println("Opção Inválida! Informe uma opção existente.\n");
+        }
+    }
+
+    public static void consultarUsuarios() {
+
+    }
+
+    public static void buscarUsuarios() {
+
     }
 }

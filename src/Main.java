@@ -2,16 +2,16 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class Main {
+    static Scanner scanner = new Scanner(System.in);
+    static int menu, escolha, i = 0, j = 1;
+    static String avisoEspaco = "Não há espaço para cadastrar um novo usuário!";
+    static String[] tiposDeDados = {"Nome", "Idade", "Sexo", "Curso"};
+    static String[][] alunos = new String[10][4], funcionarios = new String[3][3];
+    static long[] matriculaAlunos = new long[10];
+    static long[] matriculaFuncionarios = new long[3];
     static long[] codigosDeUsuario = new long[13];
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int menu, escolha, i = 0, j = 1;
-        String aviso = "Não há espaço para cadastrar um novo usuário!";
-        String[][] alunos = new String[10][4];
-        String[][] funcionarios = new String[3][3];
-        long[] matriculaAlunos = new long[10];
-        long[] matriculaFuncionarios = new long[3];
 
+    public static void main(String[] args) {
         do {
             // Menu Principal
             System.out.println("""
@@ -29,198 +29,19 @@ public class Main {
             System.out.println(); // Espaço
 
             switch (menu) {
+                // Cadastro
                 case 1:
-                    // Menu Cadastro
-                    System.out.println("""
-                                - Você é: -
-                            ____________________
-                            |1- Aluno          |
-                            |2- AQV            |
-                            |3- Coordenador    |
-                            |__________________|
-                            """);
-                    System.out.print("Escolha uma opção: ");
-                    escolha = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println();
-
-                    if (escolha == 1) {
-                        // Alunos
-                        if (i < 10) {
-                            System.out.println("-- Cadastro do Aluno --");
-                            System.out.print("Nome do Aluno: ");
-                            alunos[i][0] = scanner.nextLine();
-
-                            System.out.print("Idade do Aluno: ");
-                            alunos[i][1] = scanner.nextLine();
-
-                            System.out.print("Sexo do Aluno: ");
-                            alunos[i][2] = scanner.nextLine();
-
-                            System.out.print("Curso do Aluno: ");
-                            alunos[i][3] = scanner.nextLine();
-
-                            System.out.print("Matricula: ");
-                            matriculaAlunos[i] = scanner.nextLong();
-                            scanner.nextLine();
-
-                            gerarCodigo(i);
-
-                            i++;
-                            System.out.println();
-                        } else {
-                            System.out.println(aviso);
-                            System.out.println();
-                        }
-                    } else if (escolha == 2) {
-                        // AQV
-                        if (funcionarios[0][0] == null) {
-                            System.out.println("-- Cadastro do AQV --");
-                            System.out.print("Nome da(o) Analista de Qualidade de Vida (AQV): ");
-                            funcionarios[0][0] = scanner.nextLine();
-
-                            System.out.print("Idade: ");
-                            funcionarios[0][1] = scanner.nextLine();
-
-                            System.out.print("Sexo: ");
-                            funcionarios[0][2] = scanner.nextLine();
-
-                            System.out.print("Matricula: ");
-                            matriculaFuncionarios[0] = scanner.nextLong();
-                            scanner.nextLine();
-
-                            gerarCodigo(10);
-
-                            System.out.println();
-                        } else {
-                            System.out.println(aviso);
-                            System.out.println();
-                        }
-                    } else if (escolha == 3) {
-                        // Coordenadores
-                        if (j < 3) {
-                            System.out.println("-- Cadastro de Coordenador --");
-                            System.out.print("Nome: ");
-                            funcionarios[j][0] = scanner.nextLine();
-
-                            System.out.print("Idade: ");
-                            funcionarios[j][1] = scanner.nextLine();
-
-                            System.out.print("Sexo: ");
-                            funcionarios[j][2] = scanner.nextLine();
-
-                            System.out.print("Matricula: ");
-                            matriculaFuncionarios[j] = scanner.nextLong();
-                            scanner.nextLine();
-
-                            gerarCodigo(j+10);
-
-                            j++;
-                            System.out.println();
-                        } else {
-                            System.out.println(aviso);
-                            System.out.println();
-                        }
-                    } else {
-                        System.out.println("Opção Inválida! Informa uma opção existente.");
-                        System.out.println();
-                    }
+                    cadastrarUsuarios();
                     break;
 
                 // Consulta
                 case 2:
-                    if (alunos[0][0] != null) {
-                        System.out.println("-- Consulta de alunos cadastrados --");
-                        for (int x = 0; x < 10; x++) {
-                            if (alunos[x][0] == null) {
-                                break;
-                            }
-                            System.out.println("Nome: " + alunos[x][0]);
-                            System.out.println("Idade: " + alunos[x][1]);
-                            System.out.println("Sexo: " + alunos[x][2]);
-                            System.out.println("Curso: " + alunos[x][3]);
-                            System.out.println("Matrícula: " + matriculaAlunos[x]);
-                            System.out.println("Código de usuário: " + codigosDeUsuario[x]);
-                            System.out.println();
-                        }
-                    } else {
-                        System.out.println("Ainda não há alunos cadastrados!\n");
-                    }
+                    consultarAlunos();
                     break;
 
                 // Busca
                 case 3:
-                    if (alunos[0][0] != null) {
-                        System.out.println("""
-                            ____________________
-                            |Busca por:        |
-                            |1- Nome           |
-                            |2- Matrícula      |
-                            |__________________|
-                            
-                            """);
-                        System.out.print("Escolha a opção que deseja fazer a busca: ");
-                        escolha = scanner.nextInt();
-                        scanner.nextLine();
-                        System.out.println();
-
-                        // Busca pelo nome
-                        if (escolha == 1) {
-                            System.out.print("Digite o nome do aluno: ");
-                            String nomebusca = scanner.nextLine();
-                            boolean encontrado = false;
-
-                            for (int x = 0; x < 10; x++) {
-                                if (nomebusca.equals(alunos[x][0])) {
-                                    System.out.println("Aluno encontrado!");
-                                    System.out.println("Nome: " + alunos[x][0]);
-                                    System.out.println("Idade: " + alunos[x][1]);
-                                    System.out.println("Sexo: " + alunos[x][2]);
-                                    System.out.println("Curso: " + alunos[x][3]);
-                                    System.out.println("Matrícula: " + matriculaAlunos[x]);
-                                    System.out.println("Código do usuário: " + codigosDeUsuario[x]);
-                                    System.out.println();
-                                    encontrado = true;
-                                    break;
-                                }
-                            }
-
-                            if (!encontrado) {
-                                System.out.println("Aluno não encontrado!");
-                            }
-
-                            // Busca pela matrícula
-                        } else if (escolha == 2) {
-                            System.out.print("Digite a matrícula do aluno: ");
-                            long matriculaBusca = scanner.nextLong();
-                            boolean encontrado = false;
-
-                            for (int x = 0; x < 10; x++) {
-                                if (matriculaBusca == matriculaAlunos[x]) {
-                                    System.out.println("Aluno encontrado!");
-                                    System.out.println("Nome: " + alunos[x][0]);
-                                    System.out.println("Idade: " + alunos[x][1]);
-                                    System.out.println("Sexo: " + alunos[x][2]);
-                                    System.out.println("Curso: " + alunos[x][3]);
-                                    System.out.println("Matrícula: " + matriculaAlunos[x]);
-                                    System.out.println("Código do usuário: " + codigosDeUsuario[x]);
-                                    System.out.println();
-                                    encontrado = true;
-                                    break;
-                                }
-                            }
-
-                            if (!encontrado) {
-                                System.out.println("Aluno não encontrado!");
-                            }
-
-                        } else {
-                            System.out.println("Opção Inválida! Informa uma opção existente.");
-                            System.out.println();
-                        }
-                    } else {
-                        System.out.println("Ainda não há alunos cadastrados!\n");
-                    }
+                    buscarAlunos();
                     break;
 
                 // Encerramento do Programa
@@ -229,13 +50,169 @@ public class Main {
                     break;
 
                 default:
-                    System.out.println("Opção Inválida! Informa uma opção existente.");
-                    System.out.println();
+                    System.out.println("Opção Inválida! Informe uma opção existente." + "\n");
             }
         } while (menu != 4);
 
         scanner.close();
     }
+
+    // Funções Principais
+
+    public static void cadastrarUsuarios() {
+        // Menu Cadastro
+        System.out.println("""
+                                - Você é: -
+                            ____________________
+                            |1- Aluno          |
+                            |2- AQV            |
+                            |3- Coordenador    |
+                            |__________________|
+                            """);
+        System.out.print("Escolha uma opção: ");
+        escolha = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println();
+
+        switch (escolha) {
+            // Alunos
+            case 1:
+                if (i < 10) {
+                    System.out.println("-- Cadastro do Aluno --");
+                    for (int x = 0; x < 4; x++) {
+                        System.out.print(tiposDeDados[x] + " do Aluno: ");
+                        alunos[i][x] = scanner.nextLine();
+                        impedirRegistroVazio(alunos, i, x, tiposDeDados[x] + " do Aluno");
+                    }
+                    System.out.print("Matrícula do Aluno: ");
+                    matriculaAlunos[i] = scanner.nextLong();
+                    scanner.nextLine();
+                    gerarCodigo(i);
+
+                    i++;
+
+                } else {
+                    System.out.println(avisoEspaco + "\n");
+                }
+                break;
+            // AQV
+            case 2:
+                if (funcionarios[0][0] == null) {
+                    System.out.println("-- Cadastro do AQV --");
+                    for (int x = 0; x < 3; x++) {
+                        System.out.print(tiposDeDados[x] + " da AQV: ");
+                        funcionarios[0][x] = scanner.nextLine();
+                        impedirRegistroVazio(funcionarios, 0, x, tiposDeDados[x] + " da AQV");
+                    }
+                    System.out.print("Matrícula da AQV: ");
+                    matriculaFuncionarios[0] = scanner.nextLong();
+                    scanner.nextLine();
+                    gerarCodigo(10);
+                } else {
+                    System.out.println(avisoEspaco + "\n");
+                }
+                break;
+            // Coordenadores
+            case 3:
+                if (j < 3) {
+                    System.out.println("-- Cadastro de Coordenador --");
+                    for (int x = 0; x < 3; x++) {
+                        System.out.print(tiposDeDados[x] + " do Coordenador: ");
+                        funcionarios[j][x] = scanner.nextLine();
+                        impedirRegistroVazio(funcionarios, j, x, tiposDeDados[x] + " do Coordenador");
+                    }
+                    System.out.print("Matrícula do Coordenador: ");
+                    matriculaFuncionarios[j] = scanner.nextLong();
+                    scanner.nextLine();
+                    gerarCodigo(j+10);
+
+                    j++;
+
+                } else {
+                    System.out.println(avisoEspaco + "\n");
+                }
+                break;
+            default:
+                System.out.println("Opção Inválida! Informe uma opção existente.\n");
+        }
+    }
+
+    public static void consultarAlunos() {
+        if (alunos[0][0] != null) {
+            System.out.println("-- Consulta de alunos cadastrados --");
+            for (int x = 0; x < 10; x++) {
+                if (alunos[x][0] == null) {
+                    break;
+                }
+                exibirDados(x);
+            }
+        } else {
+            System.out.println("Ainda não há alunos cadastrados!\n");
+        }
+    }
+
+    public static void buscarAlunos() {
+        if (alunos[0][0] != null) {
+            System.out.println("""
+                            ____________________
+                            |Busca por:        |
+                            |1- Nome           |
+                            |2- Matrícula      |
+                            |__________________|
+                            
+                            """);
+            System.out.print("Escolha a opção que deseja fazer a busca: ");
+            escolha = scanner.nextInt();
+            scanner.nextLine();
+            System.out.println();
+
+            // Busca pelo Nome
+            if (escolha == 1) {
+                System.out.print("Digite o nome do aluno: ");
+                String nomeBusca = scanner.nextLine();
+                boolean encontrado = false;
+
+                for (int x = 0; x < 10; x++) {
+                    if (nomeBusca.equals(alunos[x][0])) {
+                        System.out.println("Aluno encontrado!");
+                        exibirDados(x);
+                        encontrado = true;
+                        break;
+                    }
+                }
+
+                if (!encontrado) {
+                    System.out.println("Aluno não encontrado!");
+                }
+
+                // Busca pela Matrícula
+            } else if (escolha == 2) {
+                System.out.print("Digite a matrícula do aluno: ");
+                long matriculaBusca = scanner.nextLong();
+                boolean encontrado = false;
+
+                for (int x = 0; x < 10; x++) {
+                    if (matriculaBusca == matriculaAlunos[x]) {
+                        System.out.println("Aluno encontrado!");
+                        exibirDados(x);
+                        encontrado = true;
+                        break;
+                    }
+                }
+
+                if (!encontrado) {
+                    System.out.println("Aluno não encontrado!");
+                }
+
+            } else {
+                System.out.println("Opção Inválida! Informe uma opção existente." + "\n");
+            }
+        } else {
+            System.out.println("Ainda não há alunos cadastrados!\n");
+        }
+    }
+
+    // Funções Secundárias
 
     public static void gerarCodigo(int contador) {
         Random random = new Random();
@@ -249,5 +226,23 @@ public class Main {
             }
         }
         System.out.println("Código do usuário: " + codigosDeUsuario[contador] + "\n");
+    }
+
+    public static void impedirRegistroVazio(String[][] matriz, int linha, int coluna, String texto) {
+        if (matriz[linha][coluna] == "") {
+            while (matriz[linha][coluna] == "") {
+                System.out.print("Este campo é obrigatório!\n" + texto + ": ");
+                matriz[linha][coluna] = scanner.nextLine();
+            }
+            System.out.println();
+        }
+    }
+
+    public static void exibirDados(int linha) {
+        for (int x = 0; x < 4; x++) {
+            System.out.println(tiposDeDados[x] + ": " + alunos[linha][x]);
+        }
+        System.out.println("Matrícula: " + matriculaAlunos[linha]);
+        System.out.println("Código do usuário: " + codigosDeUsuario[linha] + "\n");
     }
 }

@@ -4,7 +4,6 @@ import java.util.Random;
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static int menu, escolha, i = 0, j = 1;
-    static String avisoEspaco = "Não há espaço para cadastrar um novo usuário!";
     static String[] tiposDeDados = {"Nome", "Idade", "Sexo", "Curso"};
     static String[][] alunos = new String[10][4], funcionarios = new String[3][3];
     static long[] matriculaAlunos = new long[10];

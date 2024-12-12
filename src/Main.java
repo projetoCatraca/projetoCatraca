@@ -52,6 +52,7 @@ public class Main {
                 case 4:
                     System.out.println("Encerrando o programa...\nSalvando Dados...");
                     salvarDadosAluno();
+                    salvarDadosFuncionarios();
                     break;
 
                 default:
@@ -229,8 +230,11 @@ public class Main {
     public static void salvarDadosAluno() {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(arquivoBancoDeDadosAl))) {
             for (String[] linha : alunos) {
+                if (linha[0] == null) {
+                    break;
+                }
                 bufferedWriter.write("Aluno: " + String.join(",", linha) + "\n");
-                System.out.println(String.join(",", linha) + "\n");
+                System.out.println(String.join(",", linha));
             }
 
         } catch (Exception e) {
@@ -242,6 +246,9 @@ public class Main {
     public static void salvarDadosFuncionarios() {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(arquivoBancoDeDadosFunc))) {
             for (String[] linha : funcionarios) {
+                if (linha[0] == null) {
+                    break;
+                }
                 bufferedWriter.write("Funcionario: " + String.join(",", linha) + "\n");
             }
 

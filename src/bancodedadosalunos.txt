@@ -1,10 +1,6 @@
-Aluno: Andre Mendes,17,masc,DEVM
-Aluno: Kauanne Paula,17,fem,DEVM
-Aluno: Julia Mendes,17,fem,DEVM
+Aluno: André Mendes,17,masc,DEVM
 Aluno: Bianca Alves,19,fem,DEVM
+Aluno: Julia Mendes,17,fem,DEVM
 Aluno: Juliana Olegario,18,fem,DEVM
-Aluno: null,null,null,null
-Aluno: null,null,null,null
-Aluno: null,null,null,null
-Aluno: null,null,null,null
-Aluno: null,null,null,null
+Aluno: Kaique Campos,19,masc,DEVM
+Aluno: Kauanne Paula,17,fem,DEVM

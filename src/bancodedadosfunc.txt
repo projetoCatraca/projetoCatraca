@@ -1,0 +1,3 @@
+Funcionario: Tati,24,fem
+Funcionario: Roberto,32,masc
+Funcionario: Danielle,34,fem

@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -9,6 +12,8 @@ public class Main {
     static long[] matriculaAlunos = new long[10];
     static long[] matriculaFuncionarios = new long[3];
     static long[] codigosDeUsuario = new long[13];
+    static File arquivoBancoDeDadosAl = new File("src\\bancodedadosalunos.txt");
+    static File arquivoBancoDeDadosFunc = new File("src\\bancodedadosfunc.txt");
 
     public static void main(String[] args) {
         do {
@@ -19,7 +24,7 @@ public class Main {
                             |1- Cadastro       |
                             |2- Consulta       |
                             |3- Busca          |
-                            |4- Sair           |
+                            |4- Sair e salvar  |
                             |__________________|
                             """);
             System.out.print("Escolha uma opção: ");
@@ -45,13 +50,15 @@ public class Main {
 
                 // Encerramento do Programa
                 case 4:
-                    System.out.println("Encerrando o programa...");
+                    System.out.println("Encerrando o programa...\nSalvando Dados...");
+                    salvarDadosAluno();
                     break;
 
                 default:
                     System.out.println("Opção Inválida! Informe uma opção existente." + "\n");
             }
         } while (menu != 4);
+
 
         scanner.close();
     }
@@ -218,6 +225,31 @@ public class Main {
     }
 
     // Funções Secundárias
+
+    public static void salvarDadosAluno() {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(arquivoBancoDeDadosAl))) {
+            for (String[] linha : alunos) {
+                bufferedWriter.write("Aluno: " + String.join(",", linha) + "\n");
+                System.out.println(String.join(",", linha) + "\n");
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public static void salvarDadosFuncionarios() {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(arquivoBancoDeDadosFunc))) {
+            for (String[] linha : funcionarios) {
+                bufferedWriter.write("Funcionario: " + String.join(",", linha) + "\n");
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
     public static void gerarCodigo(int contador) {
         Random random = new Random();
